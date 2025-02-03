@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tessellated Form Art</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #f0f0f0;
+        }
+
+        #menu {
+            margin: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        #canvas-container {
+            position: relative;
+            width: 100vw;
+            height: 80vh;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .tile {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            transform-origin: center;
+            pointer-events: none;
+            animation: float 5s infinite ease-in-out;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(10px, -10px);
+            }
+        }
+
+        .tile:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .lofi {
+            filter: grayscale(1) contrast(2) brightness(0.8);
+        }
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <label for="shape">Shape:</label>
+        <select id="shape">
+            <option value="square">Square</option>
+            <option value="triangle">Triangle</option>
+            <option value="circle">Circle</option>
+        </select>
+
+        <label for="color">Base Color:</label>
+        <input type="color" id="color" value="#3498db">
+
+        <label for="gradient">Gradient:</label>
+        <input type="checkbox" id="gradient">
+
+        <label for="size">Size:</label>
+        <input type="range" id="size" min="20" max="100" value="50">
+
+        <label for="dither">Dither Speed:</label>
+        <input type="range" id="dither" min="0" max="5" step="0.1" value="1">
+
+        <label for="lofi">Lo-Fi:</label>
+        <input type="checkbox" id="lofi">
+
+        <button id="generate">Generate</button>
+    </div>
+
+    <div id="canvas-container"></div>
+
+    <script defer src="script.js"></script>
+</body>
+</html>
